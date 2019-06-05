@@ -22,7 +22,9 @@ function getSheet(name) {
 }
 
 function recordData(form) {
-    var itemData = countItem(form.htmlFile.getDataAsString())
+    var html = form.htmlFile.getDataAsString()
+    html = html.slice(html.indexOf("<html"), html.indexOf("</html>") + "</html>".length)
+    var itemData = countItem(html)
     writeData(itemData.items, itemData.itemType)
 
     Browser.msgBox("保存完了！")
