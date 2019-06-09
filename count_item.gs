@@ -32,13 +32,8 @@ function getItemType($) {
 }
 
 function getItemCategory(elm) {
-    // "lis-item se"や"lis-item btn-evolution-weapon"等から種別を取得する
-    var classNames = elm.attr('class').split(" ")
-    var itemCategory = classNames.filter(function (str) {
-        return str !== "lis-item"
-    }).toString().replace("btn-", "")
-
-    return itemCategory
+    // class名で判別
+    return  elm.attr('class')
 }
 
 function getImgName(elm) {

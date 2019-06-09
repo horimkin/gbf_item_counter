@@ -19,6 +19,11 @@
             google.script.run.storeTimestamp(form.htmlFile.files[0].lastModified)
 
             google.script.run.recordData(form)
+
+            let submit = document.getElementById("countItemSubmit")
+            submit.disabled = true
+            let message = document.getElementById("message")
+            message.textContent="ファイルを読み込んでいます"
         }
     </script>
 </head>
@@ -26,8 +31,10 @@
 <body>
     <form id="itemForm" onsubmit="countItem(this)" enctype="multipart/form-data">
         <input type="file" name="htmlFile">
-        <button type="submit">読み込み</button>
+        <button type="submit" id="countItemSubmit">読み込み</button>
     </form>
+    <div id="message">
+    </div>
 </body>
 
 </html>
