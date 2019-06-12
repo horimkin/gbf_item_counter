@@ -49,13 +49,14 @@ function updateData(data, sheet) {
 }
 
 function storeTimestamp(unixtime) {
-    var sheet = getSheet("temporary")
+    var sheet = getSheet("temp")
+    sheet.hideSheet()
     sheet.getRange(1, 2).setValue(new Date(unixtime))
 
     console.log("completed");
 }
 
 function writeTimestamp(sheet, col) {
-    date = getSheet("temporary").getRange(1, 2).getValue()
+    date = getSheet("temp").getRange(1, 2).getValue()
     sheet.getRange(1, col).setValue(date)
 }
