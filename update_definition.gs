@@ -1,9 +1,19 @@
 function updateDefinition() {
     var master_ss = SpreadsheetApp.openById("14CaUJow1-Hylcwio8p7rmGDq-jgncH38OLjdHxNRgtA")
-    var masterSheet = master_ss.getSheetByName("definition")
-    var mySheet = ss.getSheetByName("アイテム定義")
-    if (mySheet) {
-        ss.deleteSheet(mySheet)
-    }
-    masterSheet.copyTo(ss).setName("アイテム定義")
+    sheetNames = ["アイテム定義", "参照用アイテム定義", "アイテム種別対照表"]
+
+    sheetNames.forEach(function (name) {
+        copyData(master_ss, name)
+    })
+}
+
+function copyData(origin_ss, sheetName) {
+    var src = origin_ss.getSheetByName(sheetName)
+    var dst = getSheet(sheetName)
+    var lastCol = src.getLastColumn()
+    var lastRow = src.getLastRow()
+    var data = src.getRange(1, 1, lastRow, lastCol).getValues()
+
+    dst.clear()
+    dst.getRange(1, 1, lastRow, lastCol).setValues(data)
 }
