@@ -23,10 +23,16 @@ function getSheet(name) {
 
 function recordData(form) {
     var html = form.htmlFile.getDataAsString()
-    html = html.slice(html.indexOf("<html"), html.indexOf("</html>") + "</html>".length)
+    html = trimHtmlString(html)
     var itemData = countItem(html)
     writeData(itemData.items, itemData.itemType)
 
     Browser.msgBox("保存完了！")
     console.log("completed");
+}
+
+function trimHtmlString(html) {
+    var trimedStr = html.slice(html.indexOf("<html"), html.lastIndexOf("</html>") + "</html>".length)
+    trimedStr = trimedStr.replace(/(<iframe[\s\S]*?<\/iframe>|<head[\s\S]*?<\/head>|<script[\s\S]*?<\/script>)/g, "")
+    return trimedStr
 }

@@ -1,19 +1,23 @@
 function countItem(html) {
     var $ = Cheerio.load(html)
-    return {items: getItems($), itemType:getItemType($)}
+    var items = getItems($)
+    var itemType = getItemType($)
+    return {items: items, itemType: itemType}
 }
 
 function getItems($) {
     var elements = $('.lis-item')
-    var items = new Array(elements.length)
+    var elmLength = elements.length
+    var items = new Array(elmLength)
 
-    elements.each(function (i, element) {
-        var itemCategory = getItemCategory($(this))
-        var imgName = getImgName($(this))
-        var itemNum = $(this).children().eq(1).text()
+    for (var i = 0; i < elmLength; i++) {
+        var elm = elements.eq(i)
+        var itemCategory = getItemCategory(elm)
+        var imgName = getImgName(elm)
+        var itemNum = elm.children().eq(1).text()
 
-        items[i] = [itemCategory, imgName, itemNum]
-    })
+        items[i] = [itemCategory, imgName, itemNum]        
+    }
 
     return items
 }
