@@ -18,6 +18,11 @@ function updateData(data, sheet) {
     var lastRow = sheet.getLastRow()
     var recordedDataLength = lastRow - 1
     var recordedIds = sheet.getRange(2, 1, recordedDataLength, 2).getValues()
+    var maxCol = sheet.getMaxColumns()
+
+    if (lastCol >= maxCol) {
+        addColumns(sheet)
+    }
 
     var updData = new Array()
     // TODO filterとmapをforEachでひとまとめにしたい
