@@ -25,28 +25,29 @@ function updateData(data, sheet) {
     }
 
     var updData = new Array()
-    // TODO filterとmapをforEachでひとまとめにしたい
-    var newData = data.filter(function (dat) {
-        return !recordedIds.some(function (id) {
+    var newData = new Array()
+    var padding = (new Array(lastCol - 2)).fill(0)
+
+    data.forEach(function (dat) {
+        var recorded = recordedIds.some(function (id, i) {
             if (dat[0] === id[0] && dat[1] === id[1]) {
                 updData.push([dat[2]])
+                recordedIds.splice(i, 1)
                 return true
             } else {
                 return false
             }
         })
+
+        if (!recorded) {
+            var index = newData.push(dat) - 1
+            Array.prototype.splice.apply(newData[index],[2,0].concat(padding))
+        }
     })
+
     sheet.getRange(2, lastCol + 1, recordedDataLength, 1).setValues(updData)
 
     if (newData.length > 0) {
-        newData = newData.map(function (d) {
-            var swap = d[2]
-            d.pop()
-            d = d.concat((new Array(lastCol - 2)).fill(0))
-            d.push(swap)
-            return d
-        })
-
         sheet.getRange(lastRow + 1, 1, newData.length, lastCol + 1).setValues(newData)
     }
 
