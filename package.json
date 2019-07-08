@@ -1,0 +1,25 @@
+{
+  "name": "gbf_item_counter",
+  "version": "0.4.2",
+  "description": "グラブルのアイテムページを保存したHTMLファイルからアイテム数を抽出する",
+  "author": "horimkin",
+  "main": "main.js",
+  "scripts": {
+    "lint": "tslint --fix src/**/*.ts",
+    "test": "jest",
+    "dev": "clasp push -w"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "watch": "latest",
+    "typescript": "latest",
+    "@types/google-apps-script": "latest",
+    "tslint": "latest",
+    "prettier": "latest",
+    "tslint-config-prettier": "latest",
+    "tslint-plugin-prettier":  "latest",
+    "jest": "latest",
+    "@types/jest": "latest",
+    "ts-jest": "latest"
+  }
+}
