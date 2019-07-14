@@ -41,7 +41,7 @@ function updateData(data, sheet) {
 
         if (!recorded) {
             var index = newData.push(dat) - 1
-            Array.prototype.splice.apply(newData[index],[2,0].concat(padding))
+            Array.prototype.splice.apply(newData[index], [2, 0].concat(padding))
         }
     })
 
