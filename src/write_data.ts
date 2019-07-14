@@ -63,7 +63,7 @@ function storeTimestamp(unixtime) {
 }
 
 function writeTimestamp(sheet, col) {
-  date = getSheet('temp')
+  var date = getSheet('temp')
     .getRange(1, 2)
     .getValue();
   sheet.getRange(1, col).setValue(date);

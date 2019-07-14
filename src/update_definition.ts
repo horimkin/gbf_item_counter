@@ -1,6 +1,6 @@
 function updateDefinition() {
   var master_ss = SpreadsheetApp.openById('14CaUJow1-Hylcwio8p7rmGDq-jgncH38OLjdHxNRgtA');
-  sheetNames = ['アイテム定義', '参照用アイテム定義', 'アイテム種別対照表'];
+  var sheetNames = ['アイテム定義', '参照用アイテム定義', 'アイテム種別対照表'];
 
   sheetNames.forEach(function(name) {
     copyData(master_ss, name);
