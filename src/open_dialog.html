@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <base target="_top">
+  <head>
+    <base target="_top" />
     <script>
-        function preventFormSubmit() {
-            var forms = document.querySelectorAll("form")
-            for (var i = 0; i < forms.length; i++) {
-                forms[i].addEventListener("submit", function (event) {
-                    event.preventDefault()
-                });
-            }
+      function preventFormSubmit() {
+        var forms = document.querySelectorAll("form");
+        for (var i = 0; i < forms.length; i++) {
+          forms[i].addEventListener("submit", function(event) {
+            event.preventDefault();
+          });
         }
-        window.addEventListener("load", preventFormSubmit)
+      }
+      window.addEventListener("load", preventFormSubmit);
 
-        function countItem(form) {
-            // GAS側ではタイムスタンプが取得できなくなるためここで取得
-            google.script.run.storeTimestamp(form.htmlFile.files[0].lastModified)
+      function countItem(form) {
+        // GAS側ではタイムスタンプが取得できなくなるためここで取得
+        google.script.run.storeTimestamp(form.htmlFile.files[0].lastModified);
 
-            google.script.run.recordData(form)
+        google.script.run.recordData(form);
 
-            let submit = document.getElementById("countItemSubmit")
-            submit.disabled = true
-            let message = document.getElementById("message")
-            message.textContent="ファイルを読み込んでいます"
-        }
+        let submit = document.getElementById("countItemSubmit");
+        submit.disabled = true;
+        let message = document.getElementById("message");
+        message.textContent = "ファイルを読み込んでいます";
+      }
     </script>
-</head>
+  </head>
 
-<body>
-    <form id="itemForm" onsubmit="countItem(this)" enctype="multipart/form-data">
-        <input type="file" name="htmlFile">
-        <button type="submit" id="countItemSubmit">読み込み</button>
+  <body>
+    <form
+      id="itemForm"
+      onsubmit="countItem(this)"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="htmlFile" />
+      <button type="submit" id="countItemSubmit">読み込み</button>
     </form>
-    <div id="message">
-    </div>
-</body>
-
+    <div id="message"></div>
+  </body>
 </html>
